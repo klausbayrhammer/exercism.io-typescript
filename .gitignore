@@ -1,0 +1,9 @@
+*/node_modules
+*/.exercism
+.idea
+*/.*
+*/*.js
+*/README.md
+*/*.json
+*/yarn.lock
+*/*.test.ts
