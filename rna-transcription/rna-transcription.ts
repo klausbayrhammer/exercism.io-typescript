@@ -7,14 +7,17 @@ const dnaToRnaMapping:Record<string, string> = {
 
 class Transcriptor {
     toRna(dnaStrand: string): string {
-        return dnaStrand.split("").map(dna => {
-            const rna = dnaToRnaMapping[dna];
-            if(!rna) {
-                throw new Error('Invalid input DNA.');
-            }
-            return rna;
-        }).join("");
+        return dnaStrand.split("").map(mapDnaToRna).join("");
+
     }
+}
+
+function mapDnaToRna(dna: string): string {
+    const rna = dnaToRnaMapping[dna];
+    if (!rna) {
+        throw new Error('Invalid input DNA.');
+    }
+    return rna;
 }
 
 export default Transcriptor
