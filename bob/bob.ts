@@ -1,5 +1,8 @@
+type Phrase = string;
+type Response = string;
+
 export default class {
-    hey(phrase: string): string {
+    hey(phrase: Phrase): Response {
         if (forcefulQuestion(phrase)) {
             return `Calm down, I know what I'm doing!`
         }
@@ -9,27 +12,27 @@ export default class {
         if (question(phrase)) {
             return 'Sure.'
         }
-        if(silence(phrase)) {
+        if (silence(phrase)) {
             return 'Fine. Be that way!'
         }
         return 'Whatever.'
     }
 }
 
-function forcefulQuestion(phrase: string): boolean {
+function forcefulQuestion(phrase: Phrase): boolean {
     return shouting(phrase) && question(phrase);
 }
 
-function shouting(phrase: string): boolean {
+function shouting(phrase: Phrase): boolean {
     const containsAlphabeticLetters = /[a-z]/i.test(phrase);
     const phraseIsEqualToUppercasePhrase = phrase === phrase.toUpperCase();
     return phraseIsEqualToUppercasePhrase && containsAlphabeticLetters;
 }
 
-function question(phrase: string): boolean {
+function question(phrase: Phrase): boolean {
     return phrase.trim().endsWith('?');
 }
 
-function silence(phrase: string): boolean {
+function silence(phrase: Phrase): boolean {
     return phrase.trim() === '';
 }
