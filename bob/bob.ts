@@ -1,21 +1,16 @@
 type Phrase = string;
 type Response = string;
 
+const responseStrategies = [
+    {test: forcefulQuestion, response: `Calm down, I know what I'm doing!`},
+    {test: shouting, response: 'Whoa, chill out!'},
+    {test: question, response: 'Sure.'},
+    {test: silence, response: 'Fine. Be that way!'}
+]
+
 export default class {
     hey(phrase: Phrase): Response {
-        if (forcefulQuestion(phrase)) {
-            return `Calm down, I know what I'm doing!`
-        }
-        if (shouting(phrase)) {
-            return 'Whoa, chill out!'
-        }
-        if (question(phrase)) {
-            return 'Sure.'
-        }
-        if (silence(phrase)) {
-            return 'Fine. Be that way!'
-        }
-        return 'Whatever.'
+        return responseStrategies.find(({test}) => test(phrase))?.response || 'Whatever';
     }
 }
 
