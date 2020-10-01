@@ -8,18 +8,14 @@ export default class GradeSchool {
     private roster = new Map<Grade, Students>();
 
     studentRoster(): StudentRoster {
-        const immutableMap = new Map();
-        for(const key of this.roster.keys()) {
-            immutableMap.set(key, [... this.roster.get(key) ?? []])
-        }
-        return immutableMap;
-
+        const rosterCopy = new Map();
+        this.roster.forEach((val, key) => rosterCopy.set(key, [... val]))
+        return rosterCopy;
     }
 
     addStudent(student: Student, grade: Grade) {
-        const gradeKey = grade.toString();
-        const studensInGrade = this.roster.get(gradeKey) ?? [];
-        this.roster.set(gradeKey, [... studensInGrade, student].sort());
+        const newStudentsInGrade = [... this.studentsInGrade(grade), student];
+        this.roster.set(String(grade), newStudentsInGrade.sort());
     }
 
     studentsInGrade(grade: Grade) {
