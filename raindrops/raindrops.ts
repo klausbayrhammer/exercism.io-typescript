@@ -7,10 +7,7 @@ const raindropsToResponse = [
 export function convert(raindrops: number): string {
   const specialResponse = raindropsToResponse
     .filter(({divisor}) => raindrops % divisor === 0)
-    .map(({response}) => response);
-  
-  if(specialResponse.length !== 0) {
-    return specialResponse.join('');
-  }
-  return String(raindrops);
+    .map(({response}) => response)
+    .join('');
+  return specialResponse || String(raindrops);
 }
