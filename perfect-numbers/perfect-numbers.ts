@@ -11,9 +11,12 @@ export function classify(numberToTest: number): PerfectNumberClassification {
 
   const aliquotSum = Array(numberToTest)
       .fill(undefined)
-      .map((_, index) => index)
-      .filter(index => numberToTest % index === 0)
-      .reduce((a, b) => a + b, 0)
+      .reduce((sum, _, index) => {
+        if(numberToTest % index === 0) {
+          return sum + index;
+        }
+        return sum;
+      }, 0)
 
   if(aliquotSum === numberToTest) {
     return PerfectNumberClassification.Perfect
