@@ -16,10 +16,10 @@ export function classify(numberToTest: number): PerfectNumberClassification {
       .reduce((a, b) => a + b, 0)
 
   if(aliquotSum === numberToTest) {
-    return PerfectNumberClassification.Perfect;
+    return PerfectNumberClassification.Perfect
   }
   if(aliquotSum <= numberToTest) {
-    return PerfectNumberClassification.Deficient;
+    return PerfectNumberClassification.Deficient
   }
   return PerfectNumberClassification.Abundant
 }
