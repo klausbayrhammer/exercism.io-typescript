@@ -9,20 +9,15 @@ export function classify(numberToTest: number): PerfectNumberClassification {
     throw new Error('Classification is only possible for natural numbers.')
   }
 
-  const aliquotSum = Array(numberToTest)
-      .fill(undefined)
-      .reduce((sum, _, index) => {
-        if(numberToTest % index === 0) {
-          return sum + index;
-        }
-        return sum;
-      }, 0)
+  const aliquotSum = [... new Array(numberToTest).keys()]
+      .filter(index => numberToTest % index === 0)
+      .reduce((a, b) => a + b, 0)
 
   if(aliquotSum === numberToTest) {
-    return PerfectNumberClassification.Perfect
+    return PerfectNumberClassification.Perfect;
   }
   if(aliquotSum <= numberToTest) {
-    return PerfectNumberClassification.Deficient
+    return PerfectNumberClassification.Deficient;
   }
   return PerfectNumberClassification.Abundant
 }
