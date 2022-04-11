@@ -13,7 +13,8 @@ export function score(input?: string) {
     if (!input) {
         return 0;
     }
-    return [...input.toUpperCase()]
+    return input.toUpperCase()
+        .split('')
         .map(char => LETTER_VALUES.get(char) ?? 0)
         .reduce((a, b) => a + b, 0)
 }
