@@ -1,20 +1,16 @@
-const LETTER_VALUES = new Map<string, number>(
-    [
-        ['A', 1], ['E', 1], ['I', 1], ['O', 1], ['U', 1], ['L', 1], ['N', 1], ['R', 1], ['S', 1], ['T', 1],
-        ['D', 2], ['G', 2],
-        ['B', 3], ['C', 3], ['M', 3], ['P', 3],
-        ['F', 4], ['H', 4], ['V', 4], ['W', 4], ['Y', 4],
-        ['K', 5],
-        ['J', 8], ['X', 8],
-        ['Q', 10], ['Z', 10],
-    ])
+const LETTER_VALUES = [
+        {letters: 'AEIOULNRST', letterValue: 1},
+        {letters: 'DG', letterValue: 2},
+        {letters: 'BCMP', letterValue: 3},
+        {letters: 'FHVWY', letterValue: 4},
+        {letters: 'K', letterValue: 5},
+        {letters: 'JX', letterValue: 8},
+        {letters: 'QZ',letterValue: 10},
+    ]
 
-export function score(input?: string) {
-    if (!input) {
-        return 0;
-    }
+export function score(input = "") {
     return input.toUpperCase()
         .split('')
-        .map(char => LETTER_VALUES.get(char) ?? 0)
+        .map(char => LETTER_VALUES.find(({letters, letterValue}) => letters.includes(char))?.letterValue ?? 0)
         .reduce((a, b) => a + b, 0)
 }
