@@ -1,9 +1,13 @@
 */node_modules
-*/.exercism
+*/*/.exercism
 .idea
 */.*
 */*.js
-*/README.md
-*/*.json
-*/yarn.lock
+*/*/*.md
+*/*/*.json
+*/*/yarn.lock
 */*.test.ts
+*/*/*.mjs
+*/*/*.cjs
+*/*/.vscode
+/*/*/.yarnrc.yml
